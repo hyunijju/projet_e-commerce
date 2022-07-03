@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+      {% include "bootswatch.html.twig"%}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a href="" class="btn">MYSHOP <span><small>Back Office</small></span></a>
+          <a href="{{ path ('home_index') }}" class="btn">MYSHOP <span><small>Front Office</small></span></a>
+          {% if app.user is not null %}
+          <form class="d-flex">
+            <a class="btn btn-sm btn-outline-light" href="{{ path("app_logout")}}">Déconnexion</a>
+          </form>
+          {% endif %}
+        </div>
+        </nav>
+    </head>
+    <body>
+    <br>
+        <div class="container">
+            <section class="row" >
+                <nav class="col-2">
+                    <h2 class="fs-5 my-3">Gestion des produits</h2>
+                    <div class="list-group">
+                        <a href="{{ path ("app_produit_new") }}" class="list-group-item list-group-item-action">Ajouter un produit</a>
+                        <a href="{{ path("app_produit_index") }}" class="list-group-item list-group-item-action">Voir la liste des produits</a>
+                    </div>
+                    <br>
+                    <h2 class="fs-5 my-3">Gestion des membres</h2>
+                    <div class="list-group">
+                        <a href="{{ path("app_user_new") }}" class="list-group-item list-group-item-action">Ajouter un membre</a>
+                        <a href="{{ path("app_user_index") }}" class="list-group-item list-group-item-action">Voir la liste des membres</a>
+                    </div>
+                    <br>
+                    <h2 class="fs-5 my-3">Gestion des commandes</h2>
+                    <div class="list-group">
+                        <a href="{{ path ("app_commande_new") }}" class="list-group-item list-group-item-action">Ajouter une commande</a>
+                        <a href="{{ path ("app_commande_index") }}" class="list-group-item list-group-item-action">Voir la liste des commandes</a>
+                    </div>
+                </nav>
+                <div class="col-10">
+                    {% block body %}{% endblock %}
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

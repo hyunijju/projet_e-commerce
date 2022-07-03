@@ -1,0 +1,69 @@
+{% extends 'front.html.twig'%}
+{% block body %}
+<br>
+<br>
+<div class="container ms-auto">
+    <h1 class="text-center highlight" >Panier</h1>
+</div>
+<br>
+<br>
+<div class="container container-fluid">
+    {% if items | length > 0 %}
+    <table class="table">
+        <thead> 
+            <tr>
+                <th></th>
+                <th>a<span style="text-transform : lowercase">rticle</span></th>
+                <th>t<span style="text-transform : lowercase">aille</span></th>
+                <th>c<span style="text-transform : lowercase">ouleur</span></th>
+                <th class="text-center">p<span style="text-transform : lowercase">rix à l'unité</span></th>
+                <th class="text-center">q<span style="text-transform : lowercase">uantité</span></th>
+                <th class="text-end">p<span style="text-transform : lowercase">rix total</span></th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td><img style="width:150px" src="/upload/{{item.produit.photo}}" alt=""></td>
+                <td>{{ item.produit.titre }}</td>
+                <td>{{ item.produit.description }}</td>
+                <td>{{ item.produit.couleur }}</td>
+                <td class="text-center">{{ item.produit.prix }} € </td>
+                <td class="text-center"><a style="text-decoration: none; color: grey" href="{{ path ('home_remove_panier' , {"id" : item.produit.id }) }}" >-</a>
+                    <span class="mx-3">{{ item.quantite }}</span>
+                    <a style="text-decoration: none; color: grey" href="{{ path ('home_add_panier' , {"id" : item.produit.id }) }}">+</a>
+                </td>
+                <td class="text-end">{{ item.produit.prix * item.quantite }} € </td>
+                <td>
+                    <a href="{{ path ('home_delete_panier' , {"id" : item.produit.id }) }}" style="color: grey"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+</svg></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot class="text-end">
+            <tr>
+                <td colspan="6" class="text-end">Total :</td>
+                <td>{{ total }} €</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+     <br>
+    <div class="container container-fluid">
+    <a href="{{path ('home_commande')}}" class="btn text-end p-2 text-white" style="background-color:#C0E14F; margin-left: 79vw; ">Valider le panier</a>
+    </div>
+
+    {% else %}
+    <br>
+    <br>
+                <p class="text-center">Votre panier est vide.</p>
+    </div>  
+    {% endif %}
+{% endblock %}
+
+
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        {% block title %}{% endblock %}
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Titan+One&display=swap" rel="stylesheet">
+        {% include "bootswatch.html.twig"%}
+         <nav class="navbar sticky-top navbar-expand py-2" style="background-color: #FFDE59">
+  <div class="container-fluid">
+    <a href=" {{ path ('home_index') }}"class="btn navbar-brand text-white" style="font-family: 'Titan One', cursive;">MyShop</a>
+    <div class="navbar-expand" id="navbarNav">
+      
+          <a class="btn text-white my-2 my-sm-0" href="{{ path ('home_items')}}">Articles</a>
+    
+      {% if is_granted ('ROLE_ADMIN') %}
+   
+          <a class="btn text-white my-2 my-sm-0" href="{{ path('app_commande_index')}}">Accéder au back office</a>
+      {% endif %}
+       
+        <a class="btn text-white" style="text-decoration: none" href="{{ path ('home_panier') }}">Panier
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="white" class="bi bi-bag" viewBox="0 0 16 16">
+  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+</svg></span></a>
+        {% if app.user is null %}
+     
+          <a class="btn text-white my-2 my-sm-0" href="{{ path("home_login")}}">Connexion</a>
+     
+        {% else %}
+          
+          <a class="btn" style="text-decoration: none" class="text-white my-2 my-sm-0" href="{{ path("app_logout") }}"><span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+</svg></span></a>
+     
+        {% endif %}
+   
+    </div>
+  </div>
+</nav>
+<style>
+  .highlight {
+  display: inline;
+  padding: .25em 0;
+  background: #FFDBEC;
+  color: #ffffff;
+  box-shadow: .5em 0 0 #FFDBEC, -.5em 0 0 #FFDBEC;
+  font-family: 'Titan One', cursive; 
+  text-align: center;
+  position: relative ;
+  top: 50%;
+  left: 40%;
+  translate: middle;
+}
+</style>
+
+    </head>
+  {% block body %}{% endblock %}
+   </body>
+   <br><br><br><br><br><br><br>
+
+  <body>
+    
+        <footer>
+        <small>
+            <ul class="nav justify-content-center rounded-pill" style="display: inline; padding: .25em 0; background: #FFDE59; color: #ffffff; box-shadow: .5em 0 0 #FFDE59, -.5em 0 0 #FFDE59; text-align: center; position: relative ; top: 50%; left: 40%; translate: middle; border-radius: 5%">
+                <li class="list-inline-item"><a href="{{ path ('home_index') }}" style="text-decoration: none; color: white">Accueil  </a></li>
+                  <li class="list-inline-item"><a href="#" style="text-decoration: none; color: white">  Contact  </a></li>
+                <li class="list-inline-item"><a href="#" style="text-decoration: none; color: white">  À propos  </a></li>
+                <li class="list-inline-item"><a href="#" style="text-decoration: none; color: white">  CGV</a></li>
+            </ul>
+            <small>
+            <p class="nav justify-content-center opacity-50">MyShop © 2022</p>
+            </small>
+            </small>
+        </footer>
+  
+    
+</body>
+
+</html>
+
+
